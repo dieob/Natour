@@ -118,14 +118,28 @@ body {
     }
 }
 
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
 .btn:link,
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
     padding: 15px 40px;
     display: inline-block;
-    border-radius: 30px;
+    border-radius: 100px;
     transition: all .2s;
+    position: relative;
+
 }
 
 .btn:hover{
@@ -142,4 +156,34 @@ body {
 .btn-white{
     background-color: white;
     color: grey;
+}
+
+.btn::after{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after{
+    background-color: white;
+}
+
+.btn:hover::after{
+    /*scale increases the element */
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated{
+    /*name duration transition delay*/
+    animation: moveInBottom .5s ease-out .75s;
+    /*this applies the style of the 0% state of the animation*/
+    animation-fill-mode: backwards;
 }
